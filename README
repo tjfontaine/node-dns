@@ -1,3 +1,12 @@
 Pure Javascript implementation and replacement of the builtin DNS module
 
 It also includes a mechanism to run a DNS server
+
+------------
+
+TODO
+ * Parallel Requests
+ * Request Tracking/Cancellation
+ * EDNS
+ * DNSSEC
+ * Tests, tests, tests
