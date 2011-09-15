@@ -20,11 +20,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 
 */
 
-exports.createServer = require('./lib/server').createServer
-exports.types = require('./lib/types')
+exports.createServer = require('./lib/server').createServer;
+exports.types = require('./lib/types');
 
-var client = require('./lib/client')
-exports.lookup = client.lookup
-exports.resolve = client.resolve
-exports.resolve4 = client.resolve4
-exports.resolve6 = client.resolve6
+var client = require('./lib/client');
+exports.lookup = client.lookup;
+exports.resolve = client.resolve;
+exports.resolve4 = client.resolve4;
+exports.resolve6 = client.resolve6;

@@ -1,15 +1,18 @@
-var dns = require('../dns')
+"use strict";
 
-var request = dns.resolve('www.google.com', function(err, results) {
+var dns = require('../dns');
+
+var request = dns.resolve('www.google.com', function (err, results) {
+  var i;
   if (!err) {
-    for (var i in results) {
-      console.log('www.google.com', results[i])
+    for (i = 0; i < results.length; i++) {
+      console.log('www.google.com', results[i]);
     }
   } else {
-    console.log(err)
+    console.log(err);
   }
-})
+});
 
-request = dns.lookup('www.yahoo.com', function(err, family, result) {
-  console.log('www.yahoo.com', 4, result)
-})
+request = dns.lookup('www.yahoo.com', function (err, family, result) {
+  console.log('www.yahoo.com', family, result);
+});
