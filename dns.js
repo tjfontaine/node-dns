@@ -24,4 +24,7 @@ exports.createServer = require('./lib/server').createServer
 exports.types = require('./lib/types')
 
 var client = require('./lib/client')
+exports.lookup = client.lookup
 exports.resolve = client.resolve
+exports.resolve4 = client.resolve4
+exports.resolve6 = client.resolve6
