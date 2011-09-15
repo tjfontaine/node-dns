@@ -5,8 +5,8 @@ It also includes a mechanism to run a DNS server
 ------------
 
 TODO
- * Parallel Requests
- * Request Tracking/Cancellation
+ * Client Error Handling
+ * Request timeouts
  * EDNS
  * DNSSEC
  * Tests, tests, tests
