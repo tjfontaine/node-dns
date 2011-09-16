@@ -7,7 +7,7 @@ server.bind(5353);
 
 server.on('request', function (request, response) {
   //console.log(request)
-  response.answer.push(new dns.types.A({
+  response.answer.push(dns.A({
     name: request.question[0].name,
     address: '127.0.0.1',
     ttl: 600,

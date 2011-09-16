@@ -21,7 +21,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 */
 
 exports.createServer = require('./lib/server').createServer;
-exports.types = require('./lib/types');
 
 var client = require('./lib/client');
 exports.lookup = client.lookup;
@@ -48,3 +47,12 @@ exports.NOTFOUND = consts.ENOTFOUND;
 exports.NOTIMP = consts.ENOTIMP;
 exports.SERVFAIL = consts.ESERVFAIL;
 exports.TIMEOUT = consts.ETIMEOUT;
+
+var types = require('./lib/types');
+for (k in types) {
+  if (types.hasOwnProperty(k)) {
+    exports[k] = function (vals) {
+      return new types[k](vals);
+    }
+  }
+}
