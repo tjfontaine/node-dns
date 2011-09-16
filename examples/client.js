@@ -22,3 +22,9 @@ request = dns.resolveMx('microsoft.com', function (err, results) {
     console.log(result);
   });
 });
+
+request = dns.resolveTxt('aol.com', function (err, results) {
+  results.forEach(function (result) {
+    console.log('aol.com txt:', result);
+  });
+});
