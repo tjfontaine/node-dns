@@ -16,3 +16,9 @@ var request = dns.resolve('www.google.com', function (err, results) {
 request = dns.lookup('www.yahoo.com', function (err, family, result) {
   console.log('www.yahoo.com', family, result);
 });
+
+request = dns.resolveMx('microsoft.com', function (err, results) {
+  results.forEach(function (result) {
+    console.log(result);
+  });
+});
