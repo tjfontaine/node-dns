@@ -52,3 +52,15 @@ request = dns.reverse('8.8.8.8', function (err, results) {
     console.log('8.8.8.8 -->', result);
   });
 });
+
+request = dns.reverse('2600:3c03::f03c:91ff:fe96:48b', function (err, results) {
+  results.forEach(function (result) {
+    console.log('2600:3c03::f03c:91ff:fe96:48b -->', result);
+  });
+});
+
+request = dns.resolve6('alittletothewright.com', function (err, results) {
+  results.forEach(function (result) {
+    console.log('alittletothewright.com', result);
+  });
+});
