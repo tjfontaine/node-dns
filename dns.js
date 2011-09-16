@@ -33,3 +33,4 @@ exports.resolveTxt = client.resolveTxt;
 exports.resolveSrv = client.resolveSrv;
 exports.resolveNs = client.resolveNs;
 exports.resolveCname = client.resolveCname;
+exports.reverse = client.reverse;

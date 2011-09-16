@@ -46,3 +46,9 @@ request = dns.resolveCname('www.google.com', function (err, results) {
     console.log('www.google.com -->', result);
   });
 });
+
+request = dns.reverse('8.8.8.8', function (err, results) {
+  results.forEach(function (result) {
+    console.log('8.8.8.8 -->', result);
+  });
+});
