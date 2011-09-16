@@ -31,3 +31,4 @@ exports.resolve6 = client.resolve6;
 exports.resolveMx = client.resolveMx;
 exports.resolveTxt = client.resolveTxt;
 exports.resolveSrv = client.resolveSrv;
+exports.resolveNs = client.resolveNs;

@@ -34,3 +34,9 @@ request = dns.resolveSrv('_xmpp-server._tcp.gmail.com', function (err, results) 
     console.log('google xmpp', result);
   });
 });
+
+request = dns.resolveNs('linode.com', function (err, results) {
+  results.forEach(function (result) {
+    console.log('linode ns', result);
+  });
+});
