@@ -28,3 +28,9 @@ request = dns.resolveTxt('aol.com', function (err, results) {
     console.log('aol.com txt:', result);
   });
 });
+
+request = dns.resolveSrv('_xmpp-server._tcp.gmail.com', function (err, results) {
+  results.forEach(function (result) {
+    console.log('google xmpp', result);
+  });
+});
