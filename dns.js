@@ -34,3 +34,17 @@ exports.resolveSrv = client.resolveSrv;
 exports.resolveNs = client.resolveNs;
 exports.resolveCname = client.resolveCname;
 exports.reverse = client.reverse;
+
+var consts = require('./lib/consts');
+exports.BADNAME = consts.EBADNAME;
+exports.BADRESP = consts.EBADRESP;
+exports.CONNREFUSED = consts.ECONNREFUSED;
+exports.DESTRUCTION = consts.EDESTRUCTION;
+exports.REFUSED = consts.EREFUSED;
+exports.FORMERR = consts.EFORMERR;
+exports.NODATA = consts.ENODATA;
+exports.NOMEM = consts.ENOMEM;
+exports.NOTFOUND = consts.ENOTFOUND;
+exports.NOTIMP = consts.ENOTIMP;
+exports.SERVFAIL = consts.ESERVFAIL;
+exports.TIMEOUT = consts.ETIMEOUT;
