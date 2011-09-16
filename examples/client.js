@@ -40,3 +40,9 @@ request = dns.resolveNs('linode.com', function (err, results) {
     console.log('linode ns', result);
   });
 });
+
+request = dns.resolveCname('www.google.com', function (err, results) {
+  results.forEach(function (result) {
+    console.log('www.google.com -->', result);
+  });
+});
