@@ -49,10 +49,13 @@ exports.SERVFAIL = consts.ESERVFAIL;
 exports.TIMEOUT = consts.ETIMEOUT;
 
 var types = require('./lib/types');
+var createType = function(name) {
+  exports[name] = function (vals) {
+    return new types[name](vals);
+  }
+}
 for (k in types) {
   if (types.hasOwnProperty(k)) {
-    exports[k] = function (vals) {
-      return new types[k](vals);
-    }
+    createType(k);
   }
 }
