@@ -20,6 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 
 */
 
+"use strict";
+
 exports.createServer = require('./lib/server').createServer;
 
 var client = require('./lib/client');
@@ -52,8 +54,9 @@ var types = require('./lib/types');
 var createType = function(name) {
   exports[name] = function (vals) {
     return new types[name](vals);
-  }
-}
+  };
+};
+var k;
 for (k in types) {
   if (types.hasOwnProperty(k)) {
     createType(k);
