@@ -1,8 +1,9 @@
 "use strict";
 
 var dns = require('../dns');
+var request;
 
-var request = dns.resolve('www.google.com', function (err, results) {
+request = dns.resolve('www.google.com', function (err, results) {
   var i;
   if (!err) {
     for (i = 0; i < results.length; i++) {
@@ -64,3 +65,5 @@ request = dns.resolve6('alittletothewright.com', function (err, results) {
     console.log('alittletothewright.com', result);
   });
 });
+
+setTimeout(function () { console.log('goodbye'); }, 10 * 1000)
