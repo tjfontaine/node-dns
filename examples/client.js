@@ -65,5 +65,3 @@ request = dns.resolve6('alittletothewright.com', function (err, results) {
     console.log('alittletothewright.com', result);
   });
 });
-
-setTimeout(function () { console.log('goodbye'); }, 10 * 1000)
