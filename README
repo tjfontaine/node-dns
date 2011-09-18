@@ -5,9 +5,8 @@ It also includes a mechanism to run a DNS server
 ------------
 
 TODO
- * Client Error Handling
- * /etc/resolv.conf (windows huh?) parsing
  * TCP
  * EDNS
  * DNSSEC
  * Tests, tests, tests
+ * Documentation
