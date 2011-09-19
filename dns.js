@@ -56,9 +56,10 @@ var createType = function(name) {
     return new types[name](vals);
   };
 };
-var k;
-for (k in types) {
-  if (types.hasOwnProperty(k)) {
-    createType(k);
-  }
-}
+
+types.exported.forEach(createType);
+
+exports.registerType = function(name, fields) {
+  types.registerType(name, fields);
+  createType(name);
+};
