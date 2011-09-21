@@ -51,13 +51,18 @@ exports.SERVFAIL = consts.SERVFAIL;
 exports.TIMEOUT = consts.TIMEOUT;
 
 var types = require('./lib/types');
+
 var createType = function(name) {
   exports[name] = function (vals) {
-    return new types[name](vals);
+    return new types.exported[name](vals);
   };
 };
 
-types.exported.forEach(createType);
+for (var n in types.exported) {
+  if (types.exported.hasOwnProperty(n)) {
+    createType(n);
+  }
+}
 
 exports.registerType = function(name, fields) {
   types.registerType(name, fields);
