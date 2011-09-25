@@ -58,7 +58,8 @@ var createType = function(name) {
   };
 };
 
-for (var n in types.exported) {
+var n;
+for (n in types.exported) {
   if (types.exported.hasOwnProperty(n)) {
     createType(n);
   }
