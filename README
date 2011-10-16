@@ -1,7 +1,6 @@
 TODO
 
  * TCP
- * EDNS
  * DNSSEC
  * Tests, tests, tests
  * Documentation
@@ -62,8 +61,8 @@ There are 3 operations common to most types:
   - Messages have a member that keeps the Buffer and the records location in
     that buffer, beacuse labels may be compressed name.unpack needs to unpack
     relative to the entire message.
- * promote -- ResourceRecord or Response method, returns the descendent type,
-              like A/AAAA or an EDNS response
+ * promote -- ResourceRecord or Packet method, returns the descendent type,
+              like A/AAAA or an EDNS packet
 
 The base type is Message, which when initialized expects a member _fields that
 is an array of objects that adhere to the following pattern:
