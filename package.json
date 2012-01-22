@@ -9,6 +9,6 @@
   "main": "dns.js",
   "dependencies": {
     "https://github.com/tjfontaine/node-struct/tarball/master": ">= 0.0.1",
-    "bufferjs": ">= 1.0.0",
+    "bufferjs": ">= 1.0.0"
   }
 }
