@@ -8,6 +8,7 @@
   "homepage": "http://github.com/tjfontaine/node-dns",
   "main": "dns.js",
   "dependencies": {
-    "bufferjs": ">= 1.0.0"
+    "bufferjs": ">= 1.0.0",
+    "ipaddr.js": ">= 0.1.0"
   }
 }
