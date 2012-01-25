@@ -1,6 +1,7 @@
 {
   "name": "native-dns",
   "version": "0.0.1",
+  "author": "Timothy J Fontaine <tjfontaine@gmail.com> (http://atxconsulting.com)",
   "description": "Replacement for the core DNS module, includes server implementation",
   "keywords": [
     "dns",
@@ -8,6 +9,13 @@
     "native"
   ],
   "homepage": "http://github.com/tjfontaine/node-dns",
+  "bugs": {
+    "url": "http://github.com/tjfontaine/node-dns/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/tjfontaine/node-dns.git"
+  },
   "main": "dns.js",
   "dependencies": {
     "bufferjs": ">= 1.0.0",
