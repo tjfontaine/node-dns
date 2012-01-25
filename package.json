@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "Replacement for the core DNS module, includes server implementation",
   "keywords": [
-    "dns"
+    "dns",
+    "bind",
+    "native"
   ],
   "homepage": "http://github.com/tjfontaine/node-dns",
   "main": "dns.js",
