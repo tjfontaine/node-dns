@@ -49,6 +49,7 @@ exports.NOTFOUND = consts.NOTFOUND;
 exports.NOTIMP = consts.NOTIMP;
 exports.SERVFAIL = consts.SERVFAIL;
 exports.TIMEOUT = consts.TIMEOUT;
+exports.consts = consts;
 
 var types = require('./lib/types');
 
