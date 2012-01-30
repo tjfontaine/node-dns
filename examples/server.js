@@ -3,7 +3,7 @@
 var dns = require('../dns'),
   server = dns.createServer('udp4');
 
-server.bind(5353);
+server.bind(15353);
 
 server.on('request', function (request, response) {
   //console.log(request)
