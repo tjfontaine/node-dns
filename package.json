@@ -23,6 +23,6 @@
   "dependencies": {
     "bufferjs": ">= 1.0.0",
     "ipaddr.js": ">= 0.1.0",
-    "pystruct": ">= 0.0.1"
+    "pystruct": ">= 0.0.2"
   }
 }
