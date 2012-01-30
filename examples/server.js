@@ -17,6 +17,11 @@ server.on('request', function (request, response) {
     address: '127.0.0.2',
     ttl: 600,
   }));
+  response.additional.push(dns.A({
+    name: 'hostA.example.org',
+    address: '127.0.0.3',
+    ttl: 600,
+  }));
   response.send();
 });
 
