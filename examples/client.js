@@ -65,3 +65,11 @@ request = dns.resolve6('alittletothewright.com', function (err, results) {
     console.log('alittletothewright.com', result);
   });
 });
+
+request = dns.resolve('www.linode.com', 'A', '8.8.8.8', function (err, results) {
+  console.log("---- Direct Request ----");
+  results.forEach(function (result) {
+    console.log(result);
+  });
+  console.log("------------------------");
+});
