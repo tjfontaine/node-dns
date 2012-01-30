@@ -12,5 +12,14 @@ server.on('request', function (request, response) {
     address: '127.0.0.1',
     ttl: 600,
   }));
+  response.answer.push(dns.A({
+    name: request.question[0].name,
+    address: '127.0.0.2',
+    ttl: 600,
+  }));
   response.send();
+});
+
+server.on('error', function (err, buff, req, res) {
+  console.log(err.stack);
 });
