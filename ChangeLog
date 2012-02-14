@@ -1,0 +1,9 @@
+2012-02-14  Timothy J Fontaine  <tjfontaine@gmail.com>
+  * Bump to v0.0.2
+  * Add rudimentary TCP support [client, server]
+  * Rate limit queries to name servers [client]
+  * Single buffer creation for message packing [client, server]
+  * Label compression [client, server]
+  * Expose consts for use by servers [module]
+  * Specify specific server for querying against [client]
+  * Remove dependency on bufferjs [module]

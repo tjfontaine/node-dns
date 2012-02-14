@@ -1,6 +1,6 @@
 {
   "name": "native-dns",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Timothy J Fontaine <tjfontaine@gmail.com> (http://atxconsulting.com)",
   "description": "Replacement for the core DNS module, includes server implementation",
   "keywords": [
@@ -21,7 +21,6 @@
     "node": ">= 0.5.0"
   },
   "dependencies": {
-    "bufferjs": ">= 1.0.0",
     "clone": ">= 0.0.4",
     "ipaddr.js": ">= 0.1.0",
     "pystruct": ">= 0.0.2"
