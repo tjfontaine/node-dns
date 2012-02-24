@@ -21,7 +21,6 @@
     "node": ">= 0.5.0"
   },
   "dependencies": {
-    "clone": ">= 0.0.4",
     "ipaddr.js": ">= 0.1.0"
   }
 }
