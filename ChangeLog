@@ -1,3 +1,10 @@
+2012-02-24  Timothy J Fontaine  <tjfontaine@gmail.com>
+  * Bump to v0.0.3
+  * Considerable performance increase [client, server] (issue #8)
+  * Label compression is case sensitive [client, server]
+  * Remove dependency on clone and pystruct [client, server]
+  * Consolidate TCP logic [client, server] (issue #3)
+
 2012-02-14  Timothy J Fontaine  <tjfontaine@gmail.com>
   * Bump to v0.0.2
   * Add rudimentary TCP support [client, server]
