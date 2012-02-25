@@ -1,3 +1,9 @@
+2012-02-25  Timothy J Fontaine <tjfontaine@gmail.com>
+  * Bump to v0.0.4
+  * Add clone dependency (it's used in client) [module]
+  * Don't instantiate fields for every question [client, server] (issue #8)
+  * Allocate only the size Buffer needed for Packet [client, server]
+
 2012-02-24  Timothy J Fontaine  <tjfontaine@gmail.com>
   * Bump to v0.0.3
   * Considerable performance increase [client, server] (issue #8)
