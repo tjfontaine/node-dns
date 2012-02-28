@@ -20,6 +20,9 @@
   "engines": {
     "node": ">= 0.5.0"
   },
+  "scripts": {
+    "test": "nodeunit test/*"
+  },
   "dependencies": {
     "clone": ">= 0.0.5",
     "ipaddr.js": ">= 0.1.0"
