@@ -70,3 +70,14 @@ exports.registerType = function(name, fields) {
   types.registerType(name, fields);
   createType(name);
 };
+
+var Question = require('./lib/question');
+
+exports.Question = function (opts) {
+  var q = new Question();
+  q.name = opts.name;
+  q.type = opts.type;
+  q.class = opts.class || consts.NAME_TO_QCLASS.IN;
+  return q;
+};
+exports.Request = require('./lib/request');
