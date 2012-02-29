@@ -57,21 +57,24 @@ req.send();
 ```
 
 Request creation takes an object with the following fields
+
  * `question` -- an instance of Question (required)
  * `server` -- an object that defines the remote end point (required)
   - `address` -- a string ip address (required)
   - `port` -- a number for the remote port (required)
   - `type` -- a string indicating `udp` or `tcp` (required)
-    * You do not need to indicate ipv4 or ipv6, the backend will handle that
+You do not need to indicate ipv4 or ipv6, the backend will handle that
  * `timeout` -- a number in milliseconds indicating how long to wait for the
 request to finish. (optional, default 4000)
  * `try_edns` -- a boolean indicating whether to use an `EDNSPacket` (optional)
 
 There are only two methods
+
  * `send` -- sends the actual request to the remote endpoint
  * `cancel` -- cancels the request and ignores any responses
 
 Request emits the following events
+
  * `message` -- This is where you get a response, passes `(err, answer)` where
 answer is an instance of `Packet`
  * `timeout` -- Fired when the timeout is reached
@@ -119,11 +122,13 @@ which is actually an artifact and incorrect since also a tcp socket is
 instantiated, this interface will be changing in the near future.
 
 Server methods
+
  * `bind` -- specify which port and optional address the server should listen on
 (both udp and tcp)
  * `close` -- stop the server/unbind sockets.
 
 Server events (there are some discrepencies between if fired for udp and tcp)
+
  * `listen` -- emitted when underlying socket is listening
  * `close` -- emitted when the underlying socket is closed
  * `request` -- emitted when either a tcp or udp message is received, and the
@@ -137,6 +142,7 @@ Packet
 ------
 
 Properties
+
  * `header`
  * `question` -- array of `Question`s
  * `answer` -- array of `ResourceRecord`s
