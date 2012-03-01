@@ -1,4 +1,13 @@
-2012-02-25  Timothy J Fontaine <tjfontaine@gmail.com>
+2012-03-01  Timothy J Fontaine  <tjfontaine@gmail.com>
+  * Bump to v0.0.5
+  * Add test suite [module] (issue #12)
+  * Add qtypeToName/nameToQtype for convenience [module]
+  * Add Request mechanism to cusotmize queries [module]
+  * Add field name, buffer, and position to [un]pack errors [module]
+  * Add PendingRequests.autopromote to always promote ResourceRecords [module]
+  * Fix Platform.search_path it should be an array [client]
+
+2012-02-25  Timothy J Fontaine  <tjfontaine@gmail.com>
   * Bump to v0.0.4
   * Add clone dependency (it's used in client) [module]
   * Don't instantiate fields for every question [client, server] (issue #8)
