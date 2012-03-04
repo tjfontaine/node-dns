@@ -27,7 +27,7 @@ var dns = require('../dns'),
 
 var question = dns.Question({
   name: 'www.google.com',
-  type: dns.consts.NAME_TO_QTYPE.A,
+  type: 'A',
 });
 
 var start = new Date().getTime();
@@ -59,11 +59,13 @@ req.send();
 Request creation takes an object with the following fields
 
  * `question` -- an instance of Question (required)
- * `server` -- an object that defines the remote end point (required)
-  - `address` -- a string ip address (required)
-  - `port` -- a number for the remote port (required)
-  - `type` -- a string indicating `udp` or `tcp` (required)
+ * `server` -- defines the remote end point (required)
+  - as an object it should be
+    * `address` -- a string ip address (required)
+    * `port` -- a number for the remote port (optional, default 53)
+    * `type` -- a string indicating `udp` or `tcp` (optional, default `udp`)
 You do not need to indicate ipv4 or ipv6, the backend will handle that
+  - a string ip address
  * `timeout` -- a number in milliseconds indicating how long to wait for the
 request to finish. (optional, default 4000)
  * `try_edns` -- a boolean indicating whether to use an `EDNSPacket` (optional)

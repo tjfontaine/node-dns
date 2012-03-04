@@ -76,10 +76,21 @@ exports.registerType = function(name, fields) {
 var Question = require('./lib/question');
 
 exports.Question = function (opts) {
-  var q = new Question();
+  var q = new Question(), qtype;
+
   q.name = opts.name;
-  q.type = opts.type;
+
+  qtype = opts.type || consts.NAME_TO_QTYPE.A;
+  if (typeof(qtype) === 'string' || qtype instanceof String)
+    qtype = consts.nameToQtype(qtype.toUpperCase());
+
+  if (!qtype || typeof(qtype) !== 'number')
+    throw new Error("Question type must be defined and be valid");
+
+  q.type = qtype;
+
   q.class = opts.class || consts.NAME_TO_QCLASS.IN;
+
   return q;
 };
 exports.Request = require('./lib/request');

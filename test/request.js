@@ -158,6 +158,51 @@ exports.noPromote = function (test) {
   r.send();
 };
 
+exports.serverString = function (test) {
+  var r = Request({
+    question: q,
+    server: '8.8.8.8',
+  });
+
+  r.on('message', function (err, answer) {
+    test.ok(answer.answer.length > 0, 'no answers found');
+  });
+
+  r.on('timeout', function () {
+    test.ok(false, 'Should not timeout');
+  });
+
+  r.on('end', function () {
+    test.done();
+  });
+
+  r.send();
+};
+
+exports.questionString = function (test) {
+  var r = Request({
+    question: Question({
+      name: 'www.google.com',
+      type: 'a',
+    }),
+    server: '8.8.8.8',
+  });
+
+  r.on('message', function (err, answer) {
+    test.ok(answer.answer.length > 0, 'no answers found');
+  });
+
+  r.on('timeout', function () {
+    test.ok(false, 'Should not timeout');
+  });
+
+  r.on('end', function () {
+    test.done();
+  });
+
+  r.send();
+};
+
 exports.tearDown = function (cb) {
   cb();
 };
