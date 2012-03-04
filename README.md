@@ -88,9 +88,7 @@ There is also a rudimentary server implementation
 
 ```javascript
 var dns = require('../dns'),
-  server = dns.createServer('udp4');
-
-server.bind(15353);
+  server = dns.createServer();
 
 server.on('request', function (request, response) {
   //console.log(request)
@@ -115,28 +113,34 @@ server.on('request', function (request, response) {
 server.on('error', function (err, buff, req, res) {
   console.log(err.stack);
 });
+
+server.serve(15353);
 ```
 
-Server creation takes a string to indicate which `dgram` socket to make,
-which is actually an artifact and incorrect since also a tcp socket is
-instantiated, this interface will be changing in the near future.
+Server creation
+
+ * `createServer` and `createUDPServer` -- both create a `UDP` based server,
+they accept an optional object for configuration,
+  - `{ dgram_type: 'udp4' }` is the default option, the other is `udp6`
+* `createTCPServer` -- creates a TCP based server
 
 Server methods
 
- * `bind` -- specify which port and optional address the server should listen on
-(both udp and tcp)
- * `close` -- stop the server/unbind sockets.
+ * `serve(port, [address])` -- specify which port and optional address to listen
+on
+ * `close()` -- stop the server/close sockets.
 
-Server events (there are some discrepencies between if fired for udp and tcp)
+Server events
 
- * `listen` -- emitted when underlying socket is listening
+ * `listening` -- emitted when underlying socket is listening
  * `close` -- emitted when the underlying socket is closed
- * `request` -- emitted when either a tcp or udp message is received, and the
-packet was successfully unpacked, passes `(request, response)`
+ * `request` -- emitted when a dns message is received, and the packet was
+successfully unpacked, passes `(request, response)`
   - Both `request` and `response` are instances of `Packet` when you're finished
 creating the response, you merely need to call `.send()` and the packet will
 DoTheRightThing
  * `error` -- emitted when unable to properly unpack the packet, passed `(err, msg, response)`
+ * `socketError` -- remap of the underlying socket for the server, passes `(err, socket)`
 
 Packet
 ------

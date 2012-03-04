@@ -1,9 +1,7 @@
 "use strict";
 
 var dns = require('../dns'),
-  server = dns.createServer('udp4');
-
-server.bind(15353);
+  server = dns.createServer();
 
 server.on('request', function (request, response) {
   //console.log(request)
@@ -28,3 +26,18 @@ server.on('request', function (request, response) {
 server.on('error', function (err, buff, req, res) {
   console.log(err.stack);
 });
+
+server.on('listening', function () {
+  console.log('server listening on', this.address());
+  this.close();
+});
+
+server.on('socketError', function (err, socket) {
+  console.log(err);
+});
+
+server.on('close', function () {
+  console.log('server closed');
+});
+
+server.serve(15353, '127.0.0.1');

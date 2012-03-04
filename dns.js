@@ -23,6 +23,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 "use strict";
 
 exports.createServer = require('./lib/server').createServer;
+exports.createUDPServer = require('./lib/server').createUDPServer;
+exports.createTCPServer = require('./lib/server').createTCPServer;
 
 var client = require('./lib/client');
 exports.lookup = client.lookup;
