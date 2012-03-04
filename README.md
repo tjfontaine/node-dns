@@ -122,7 +122,7 @@ Server creation
  * `createServer` and `createUDPServer` -- both create a `UDP` based server,
 they accept an optional object for configuration,
   - `{ dgram_type: 'udp4' }` is the default option, the other is `udp6`
-* `createTCPServer` -- creates a TCP based server
+ * `createTCPServer` -- creates a TCP based server
 
 Server methods
 
