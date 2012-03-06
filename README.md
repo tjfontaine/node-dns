@@ -83,6 +83,40 @@ answer is an instance of `Packet`
  * `cancelled` -- Fired if the request is cancelled
  * `end` -- Always fired after a request finished, regardless of disposition
 
+Platform
+--------
+
+If you want to customize all `resolve` or `lookup`s with the replacement client
+stack you can modify the platform settings accessible in the top level `platform`
+object.
+
+Methods:
+
+ * `reload` -- Re-read system configuration files to populate name servers and
+hosts
+
+Properties:
+
+ * `ready` -- Boolean whether requests are safe to transit, true after hosts
+and name servers are filled
+ * `watching` -- Boolean indicating if system configuration files are watched
+for changes, default to false (currently can only be enabled on !win32)
+ * `name_servers` -- An array of servers used for resolving queries against
+  - Each entry is an object of `{ address: <string ip>, port: 53 }`
+  - On win32 this is hard coded to be google dns until there's a sane way to get
+the data
+ * `search_path` -- An array of domains to try and append after a failed lookup
+ * `attempts` -- The number of retries for a failed lookup/timeout (default: 5)
+ * `timeout` -- The time each query is allowed to take before trying another
+server. (in milliseconds, default: 5000 (5 seconds))
+ * `edns` -- Whether to try and send edns queries first (default: false)
+
+Events:
+
+ * `ready` -- Emitted after hosts and name servers have been loaded
+ * `unready` -- Emitted when hosts and name servers configuration is being
+reloaded.
+
 Server
 ------
 
