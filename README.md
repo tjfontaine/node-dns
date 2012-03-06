@@ -181,14 +181,86 @@ DoTheRightThing
 Packet
 ------
 
-Properties
+Properties:
 
  * `header`
+  - `id` -- request id
+  - `qdcount` -- the number of questions (inferred from array size)
+  - `ancount` -- the number of questions (inferred from array size)
+  - `nscount` -- the number of questions (inferred from array size)
+  - `arcount` -- the number of questions (inferred from array size)
+  - `qr` -- is a query response
+  - `opcode`
+  - `aa` -- Authoritative Answer
+  - `tc` -- Truncation bit
+  - `rd` -- Recursion Desired
+  - `ra` -- Recursion Available
+  - `res1` -- Reserved field
+  - `res2` -- Reserved field
+  - `res3` -- Reserved field
+  - `rcode` -- Response Code (see `consts.NAME_TO_RCODE`)
  * `question` -- array of `Question`s
  * `answer` -- array of `ResourceRecord`s
  * `authority` -- array of `ResourceRecord`s
  * `additional` -- array of `ResourceRecord`s
 
-Each individual `ResourceRecord` has a `.promote()` which will return an
-unpacked record (i.e. `A` or `CNAME`) or if the record type is unknown it will
-return a `ResourceRecord`
+Methods:
+
+ * `promote()` -- Returns `EDNSPacket` if it is one, otherwise noop
+ * `send()` -- Handles sending the packet to the right end point
+
+Question
+--------
+
+A `Question` is instantiated by passing an object like:
+
+ * `name` -- i.e. 'www.google.com' (required)
+ * `type` -- Either the string representation of the record type, or the integer
+value, see `consts.NAME_TO_QTYPE` (default: 'A')
+ * `class` -- The class of service, default to 1 meaning internet
+
+ResourceRecord
+--------------
+
+ResourceRecords are what populate `answer`, `authority`, and `additional`.
+This is a generic type, and each derived type inherits the following properties:
+
+ * `name` -- The name of the resource
+ * `type` -- The numerical representation of the resource record type
+ * `class` -- The numerical representation of the class of service (usually 1 for internet)
+ * `ttl` -- The Time To Live for the record, in seconds
+
+Resource has only one method:
+
+ * `promote()` -- This is used in the context of a response packet, when called
+on a record it will return the derived type (i.e. `A`, `AAAA`, or `CNAME`). If
+the type wasn't previously registered this has no effect.
+
+Available Types:
+
+ * `SOA`
+  - `primary` -- string
+  - `admin` -- string
+  - `serial` -- number
+  - `refresh` -- number
+  - `retry` -- number
+  - `expiration` -- number
+  - `minimum` -- number
+ * `A` and `AAAA`
+  - `address` -- string
+ * `MX`
+  - `priority` -- number
+  - `exchange` -- string
+ * `TXT`
+  - `data` -- string
+ * `SRV`
+  - `priority` -- number
+  - `weight` -- number
+  - `port` -- number
+  - `target` -- string
+ * `NS`
+  - `data` -- string
+ * `CNAME`
+  - `data` -- string
+ * `PTR`
+  - `data` -- string
