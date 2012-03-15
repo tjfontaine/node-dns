@@ -227,7 +227,7 @@ exports.emptyUdp = function (test) {
     r.send();
   });
   socket.on('message', function (msg, remote) {
-    socket.send(new Buffer(0), 0, 1, remote.port, remote.address);
+    socket.send(new Buffer(1), 0, 1, remote.port, remote.address);
   });
   socket.bind();
 };
