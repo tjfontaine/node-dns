@@ -24,7 +24,6 @@
     "test": "node ./test.js"
   },
   "dependencies": {
-    "clone": ">= 0.0.5",
     "ipaddr.js": ">= 0.1.0"
   },
   "devDependencies": {
