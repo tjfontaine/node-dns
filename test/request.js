@@ -2,6 +2,7 @@ var dns = require('../dns'),
   Request = dns.Request,
   Question = dns.Question,
   consts = dns.consts,
+  dgram = require('dgram'),
   TypeMap = require('../lib/types');
 
 var q = Question({
@@ -201,6 +202,34 @@ exports.questionString = function (test) {
   });
 
   r.send();
+};
+
+exports.emptyUdp = function (test) {
+  var socket = dgram.createSocket('udp4');
+  socket.on('listening', function () {
+    var timeout = false;
+    var r = Request({
+      question: q,
+      server: { address: '127.0.0.1', port: socket.address().port, type: 'udp' },
+      timeout: 300,
+    });
+    r.on('message', function () {
+      test.ok(false, 'There should not be a response');
+    });
+    r.on('timeout', function () {
+      timeout = true;
+    });
+    r.on('end', function () {
+      test.ok(timeout, 'This should timeout');
+      socket.close();
+      test.done();
+    });
+    r.send();
+  });
+  socket.on('message', function (msg, remote) {
+    socket.send(new Buffer(0), 0, 1, remote.port, remote.address);
+  });
+  socket.bind();
 };
 
 exports.tearDown = function (cb) {
