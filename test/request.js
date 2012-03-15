@@ -232,6 +232,45 @@ exports.emptyUdp = function (test) {
   socket.bind();
 };
 
+exports.longName = function (test) {
+  var didErr = false;
+  var r = Request({
+    question: Question({
+      name: '*************'
+        + '***************'
+        + '***************'
+        + '***************'
+        + '***************'
+        + '***************'
+        + '***************'
+        + '***************'
+        + '***************'
+        + '***************'
+        + '***************'
+        + '***************'
+        + '***************'
+        + '***************'
+        + '***************'
+        + '***************'
+        + '***************'
+        + '***************'
+        + '***************'
+        + '***************',
+    }),
+    server: '8.8.8.8',
+    timeout: 1000,
+  });
+  r.on('error', function (err) {
+    test.ok(err, 'We should error because the packet failed to pack');
+    didErr = true;
+  });
+  r.on('end', function () {
+    test.ok(didErr, 'We did not err');
+    test.done();
+  });
+  r.send();
+};
+
 exports.tearDown = function (cb) {
   cb();
 };

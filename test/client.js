@@ -388,6 +388,25 @@ exports.lookup_localhost_ipv4 = function (test) {
   checkWrap(test, req);
 };
 
+exports.lookup_longname = function (test) {
+  var name, request;
+
+  var name = '************';
+  name += name + '***************'
+  name += name + '***************'
+  name += name + '***************'
+  name += name + '***************'
+  name += name + '***************'
+
+  request = dns.lookup(name, 4, function (err, ip, family) {
+    test.ok(err, "we should fail");
+    test.strictEqual(err.errno, dns.NOTFOUND);
+
+    test.done();
+  });
+  checkWrap(test, request);
+};
+
 
 /* Disabled because it appears to be not working on linux. */
 /*
