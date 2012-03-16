@@ -75,7 +75,7 @@ exports.registerType = function(name, fields) {
   createType(name);
 };
 
-var Question = require('./lib/question');
+var Question = require('./lib/message').Question;
 
 exports.Question = function (opts) {
   var q = new Question(), qtype;
