@@ -23,9 +23,6 @@
   "scripts": {
     "test": "node ./test.js"
   },
-  "dependencies": {
-    "ipaddr.js": ">= 0.1.0"
-  },
   "devDependencies": {
     "nodeunit": ">= 0.7.4"
   }
