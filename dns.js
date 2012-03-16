@@ -95,4 +95,4 @@ exports.Question = function (opts) {
 
   return q;
 };
-exports.Request = require('./lib/request');
+exports.Request = client.Request;
