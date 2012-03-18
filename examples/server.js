@@ -29,7 +29,7 @@ server.on('error', function (err, buff, req, res) {
 
 server.on('listening', function () {
   console.log('server listening on', this.address());
-  this.close();
+  //this.close();
 });
 
 server.on('socketError', function (err, socket) {
