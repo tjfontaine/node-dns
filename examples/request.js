@@ -19,9 +19,7 @@ req.on('timeout', function () {
 });
 
 req.on('message', function (err, answer) {
-  answer.answer.forEach(function (a) {
-    console.log(a.promote().address);
-  });
+  console.log(answer.toString());
 });
 
 req.on('end', function () {
