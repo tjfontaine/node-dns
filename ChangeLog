@@ -1,3 +1,17 @@
+2012-03-20  Timothy J Fontaine  <tjfontaine@gmail.com>
+  * Bump to v0.0.7
+  * Ignore requests/responses less than the minimal size of a query [server, client]
+  * Remove clone dependency [module]
+  * Embed ipaddr.js [module]
+  * Fix label parsing [client, server]
+  * Long query names should result in ENOTFOUND [client]
+  * resolve(..., 'PTR') should use reverse, reverse should check hosts [client]
+  * Autopromote should work for eDNS packets as well [client, server]
+  * Fix server socket assignment [server]
+  * toString to various types to produce dig like output [client, server]
+  * Conosolidate various sources files into logical groups [module]
+  * Lint to match upstream's style [module]
+
 2012-03-06  Timothy J Fontaine  <tjfontaine@gmail.com>
   * Bump to v0.0.6
   * Split TCP/UDP Server, expose as createTCPServer/createUDPServer [server, module]
