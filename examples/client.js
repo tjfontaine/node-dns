@@ -60,9 +60,9 @@ request = dns.reverse('2600:3c03::f03c:91ff:fe96:48b', function (err, results) {
   });
 });
 
-request = dns.resolve6('alittletothewright.com', function (err, results) {
+request = dns.resolve6('irc6.geo.oftc.net', function (err, results) {
   results.forEach(function (result) {
-    console.log('alittletothewright.com', result);
+    console.log('irc6.geo.oftc.net', result);
   });
 });
 

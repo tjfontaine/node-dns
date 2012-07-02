@@ -1,4 +1,6 @@
 var dns = require('../dns'),
+  writer = require('../lib/writer'),
+  parser = require('../lib/parser'),
   Packet = require('../lib/packet').Packet;
 
 exports.roundTrip = function (test) {
@@ -19,14 +21,12 @@ exports.roundTrip = function (test) {
     ttl: 600,
   }));
 
-  buff = new Buffer(pre.estimateSize());
+  buff = new Buffer(1024);
 
-  pre.pack(buff, 0);
+  len = writer(buff, pre);
 
-  post = new Packet();
-  post.unpack(buff, true);
+  post = parser(buff.slice(0, len));
 
-  test.ok(pre.compare(post));
-
+  test.deepEqual(pre, post);
   test.done();
 };

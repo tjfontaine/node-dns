@@ -124,7 +124,7 @@ exports.udpResponse = function (test) {
       var record;
       test.ok(!err, 'Response should not be an error');
       test.ok(answer.answer.length === 1, 'Response should have 1 answer');
-      record = answer.answer[0].promote();
+      record = answer.answer[0]
       test.strictEqual(record.address, '127.0.0.1', 'Address mismatch');
       test.strictEqual(record.ttl, 600, 'TTL mismatch');
       test.strictEqual(record.name, 'www.google.com', 'Name mismatch');

@@ -53,30 +53,35 @@ exports.SERVFAIL = consts.SERVFAIL;
 exports.TIMEOUT = consts.TIMEOUT;
 exports.consts = consts;
 
-var types = require('./lib/types');
-
-var createType = function(name) {
-  exports[name] = function (vals) {
-    return new types.exported[name](vals);
+var definedTypes = [
+  'A',
+  'AAAA',
+  'NS',
+  'CNAME',
+  'PTR',
+  'TXT',
+  'MX',
+  'SRV',
+  'SOA',
+].forEach(function (type) {
+  exports[type] = function (opts) {
+    var obj = {};
+    opts = opts || {};
+    obj.type = consts.nameToQtype(type);
+    obj.class = consts.NAME_TO_QCLASS.IN;
+    Object.keys(opts).forEach(function (k) {
+      if (opts.hasOwnProperty(k)) {
+        obj[k] = opts[k];
+      }
+    });
+    return obj;
   };
-};
-
-var n;
-for (n in types.exported) {
-  if (types.exported.hasOwnProperty(n)) {
-    createType(n);
-  }
-}
-
-exports.registerType = function(name, fields) {
-  types.registerType(name, fields);
-  createType(name);
-};
-
-var Question = require('./lib/message').Question;
+});
 
 exports.Question = function (opts) {
-  var q = new Question(), qtype;
+  var q = {}, qtype;
+
+  opts = opts || {};
 
   q.name = opts.name;
 
