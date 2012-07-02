@@ -55,8 +55,8 @@ var fixupDns = function (cb) {
 };
 
 exports.setUp = function (cb) {
-  /* wait for up to 5 ticks so /etc/resolv.conf can be parsed */
-  var ticks = 5;
+  /* wait for up to 100 ticks so /etc/resolv.conf can be parsed */
+  var ticks = 100;
 
   var checkReady = function () {
     process.nextTick(function () {
