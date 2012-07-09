@@ -1,6 +1,4 @@
 var dns = require('../dns'),
-  writer = require('../lib/writer'),
-  parser = require('../lib/parser'),
   Packet = require('../lib/packet').Packet;
 
 exports.roundTrip = function (test) {
@@ -23,9 +21,9 @@ exports.roundTrip = function (test) {
 
   buff = new Buffer(1024);
 
-  len = writer(buff, pre);
+  len = Packet.write(buff, pre);
 
-  post = parser(buff.slice(0, len));
+  post = Packet.parse(buff.slice(0, len));
 
   test.deepEqual(pre, post);
   test.done();
@@ -62,8 +60,8 @@ exports.truncate = function (test) {
   }
 
   buff = new Buffer(512);
-  len = writer(buff, pre);
-  post = parser(buff.slice(0, len));
+  len = Packet.write(buff, pre);
+  post = Packet.parse(buff.slice(0, len));
 
   test.notEqual(pre.additional.length, post.additional.length,
     'Additional should be less because of truncated packet');
