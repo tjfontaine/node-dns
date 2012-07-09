@@ -1,5 +1,5 @@
 var dns = require('../dns'),
-  Packet = require('../lib/packet').Packet;
+  Packet = require('../lib/packet');
 
 exports.roundTrip = function (test) {
   var buff, pre, post;
