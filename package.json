@@ -1,6 +1,6 @@
 {
   "name": "native-dns",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Timothy J Fontaine <tjfontaine@gmail.com> (http://atxconsulting.com)",
   "description": "Replacement for the core DNS module, includes server implementation",
   "keywords": [
