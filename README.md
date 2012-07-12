@@ -44,7 +44,7 @@ req.on('timeout', function () {
 
 req.on('message', function (err, answer) {
   answer.answer.forEach(function (a) {
-    console.log(a.promote().address);
+    console.log(a.address);
   });
 });
 
@@ -206,7 +206,6 @@ Properties:
 
 Methods:
 
- * `promote()` -- Returns `EDNSPacket` if it is one, otherwise noop
  * `send()` -- Handles sending the packet to the right end point
 
 Question
@@ -229,12 +228,6 @@ This is a generic type, and each derived type inherits the following properties:
  * `type` -- The numerical representation of the resource record type
  * `class` -- The numerical representation of the class of service (usually 1 for internet)
  * `ttl` -- The Time To Live for the record, in seconds
-
-Resource has only one method:
-
- * `promote()` -- This is used in the context of a response packet, when called
-on a record it will return the derived type (i.e. `A`, `AAAA`, or `CNAME`). If
-the type wasn't previously registered this has no effect.
 
 Available Types:
 
