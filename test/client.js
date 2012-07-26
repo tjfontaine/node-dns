@@ -35,13 +35,10 @@ function checkWrap(test, req) {
   test.ok(typeof req === 'object');
 }
 
-var oldServers;
-var oldPath;
 
-var fixupDns = function (cb) {
-  oldServers = platform.name_servers;
-  oldPath = platform.search_path;
+var fixed = false;
 
+var fixupDns = function () {
   /* Force queries to google */
   platform.name_servers = [{
     address: '8.8.8.8',
@@ -51,35 +48,23 @@ var fixupDns = function (cb) {
   /* Don't bother trying to search for queries */
   platform.search_path = [];
 
-  cb();
+  fixed = true;
 };
+
+platform.on('ready', fixupDns);
+
+if (platform.ready)
+  fixupDns();
 
 exports.setUp = function (cb) {
-  /* wait for up to 100 ticks so /etc/resolv.conf can be parsed */
-  var ticks = 100;
-
-  var checkReady = function () {
-    process.nextTick(function () {
-      if (platform.ready) {
-        fixupDns(cb);
-      } else {
-        ticks -= 1;
-        if (ticks > 0)
-          checkReady();
-      }
-    })
+  var checkReady = function() {
+    if (fixed) {
+      cb();
+    } else {
+      process.nextTick(checkReady);
+    }
   }
-
-  if (platform.ready)
-    fixupDns(cb);
-  else
-    checkReady();
-};
-
-exports.tearDown = function (cb) {
-  platform.name_servers = oldServers;
-  platform.search_path = oldPath;
-  cb();
+  checkReady();
 };
 
 exports.resolve4 = function (test) {
