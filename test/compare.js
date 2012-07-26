@@ -90,8 +90,8 @@ var lookup = function(domain, type, test) {
   });
 };
 
-exports.resolve4 = resolve.bind(null, 'www.google.com', 'A');
-exports.resolve6 = resolve.bind(null, 'www.google.com', 'AAAA');
+exports.resolve4 = resolve.bind(null, 'irc6.geo.oftc.net', 'A');
+exports.resolve6 = resolve.bind(null, 'irc6.geo.oftc.net', 'AAAA');
 exports.resolveMx = resolve.bind(null, 'gmail.com', 'MX');
 exports.resolveNs = resolve.bind(null, 'rackspace.com', 'NS');
 exports.resolveSrv = resolve.bind(null, '_jabber._tcp.google.com', 'SRV');
