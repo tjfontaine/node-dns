@@ -109,3 +109,5 @@ exports.lookupLocalIP = lookup.bind(null, '127.0.0.1');
 exports.lookupLocalIP6 = lookup.bind(null, '::1');
 exports.lookupLocalhost4 = lookup.bind(null, 'localhost', 4);
 exports.lookupLocalhost6 = lookup.bind(null, 'localhost', 6);
+//work on search path example
+//exports.lookupPath = lookup.bind(null, 'fatman', 4);

@@ -36,16 +36,15 @@ function checkWrap(test, req) {
 }
 
 
+/*
 var fixed = false;
 
 var fixupDns = function () {
-  /* Force queries to google */
   platform.name_servers = [{
     address: '8.8.8.8',
     port: 53,
   }];
 
-  /* Don't bother trying to search for queries */
   platform.search_path = [];
 
   fixed = true;
@@ -66,6 +65,7 @@ exports.setUp = function (cb) {
   }
   checkReady();
 };
+*/
 
 exports.resolve4 = function (test) {
   var req = dns.resolve4('www.google.com', function(err, ips) {
