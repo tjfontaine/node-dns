@@ -69,6 +69,9 @@ You do not need to indicate ipv4 or ipv6, the backend will handle that
  * `timeout` -- a number in milliseconds indicating how long to wait for the
 request to finish. (optional, default 4000)
  * `try_edns` -- a boolean indicating whether to use an `EDNSPacket` (optional)
+ * `cache` -- can be false to disable caching, or implement the cache model, or
+an instance of Cache but with a different store (optional, default
+platform.cache)
 
 There are only two methods
 
@@ -110,6 +113,8 @@ the data
  * `timeout` -- The time each query is allowed to take before trying another
 server. (in milliseconds, default: 5000 (5 seconds))
  * `edns` -- Whether to try and send edns queries first (default: false)
+ * `cache` -- The system wide cache used by default for `lookup` and `resolve`,
+set this to false to disable caching
 
 Events:
 
@@ -257,3 +262,37 @@ Available Types:
   - `data` -- string
  * `PTR`
   - `data` -- string
+
+Cache
+-----
+
+If you perform a query on an A or AAAA type and it doesn't exist, the cache
+will attempt to lookup a CNAME and then resolve that.
+
+The constructor takes an optional object with the following properties:
+
+ * `store` -- implements the cache store model (optional, default MemoryStore)
+
+Methods:
+
+ * `lookup(question, cb)` -- for a given question check the cache store for
+existence
+ * `store(packet)` -- iterates over the resource records in a packet and sends
+them to the cache store
+ * `purge()` -- clears the cache store of all entries
+
+MemoryStore / Cache store model
+-------------------------------
+
+`MemoryStore(max, range)` -- Both max and range are optional, by default it
+will only store 10k keys, and upon reaching that delete `range` items from the
+store (default 50).
+
+Methods:
+
+ * `get(name, type, cb)` -- check for values of the specified type
+  - if this would return an expired record it removes it
+  - `cb(results)` -- results should be an array of resource records, or falsey
+if not found in cache
+ * `set(rr)` -- store the resource record, MemoryStore stores by `name` and
+`type` with an expiration on `ttl`

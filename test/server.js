@@ -118,6 +118,7 @@ exports.udpResponse = function (test) {
         address: '127.0.0.1',
         port: 15353,
       },
+      cache: false,
     });
 
     r.on('message', function (err, answer) {

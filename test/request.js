@@ -36,6 +36,7 @@ exports.timeout = function (test) {
     question: q,
     server: noServer,
     timeout: 100,
+    cache: false,
   });
 
   var timedout = false;
@@ -153,6 +154,7 @@ exports.emptyUdp = function (test) {
       question: q,
       server: { address: '127.0.0.1', port: socket.address().port, type: 'udp' },
       timeout: 300,
+      cache: false,
     });
     r.on('message', function () {
       test.ok(false, 'There should not be a response');

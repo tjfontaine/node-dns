@@ -99,3 +99,8 @@ exports.Question = function (opts) {
   return q;
 };
 exports.Request = client.Request;
+
+var cache = require('./lib/cache');
+
+exports.Cache = cache.Cache;
+exports.MemoryStore = cache.MemoryStore;
