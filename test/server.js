@@ -6,8 +6,10 @@ exports.udp4 = function (test) {
   var tData = {
     address: '127.0.0.1',
     port: 15353,
-    family: 'IPv4',
   };
+
+  if (!/^v0.6/.test(process.version))
+    tData.family = 'IPv4';
 
   var succeed = false;
 
@@ -41,8 +43,10 @@ exports.udp6 = function (test) {
   var tData = {
     address: '::1',
     port: 15353,
-    family: 'IPv6',
   };
+
+  if (!/^v0.6/.test(process.version))
+    tData.family = 'IPv6';
 
   var succeed = false;
 
