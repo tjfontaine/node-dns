@@ -35,8 +35,6 @@ function checkWrap(test, req) {
   test.ok(typeof req === 'object');
 }
 
-
-/*
 var fixed = false;
 
 var fixupDns = function () {
@@ -65,7 +63,6 @@ exports.setUp = function (cb) {
   }
   checkReady();
 };
-*/
 
 exports.resolve4 = function (test) {
   var req = dns.resolve4('www.google.com', function(err, ips) {
