@@ -180,7 +180,7 @@ exports.resolveMx = function (test) {
 
 
 exports.resolveNs = function (test) {
-  var req = dns.resolveNs('rackspace.com', function(err, names) {
+  var req = dns.resolveNs('google.com', function(err, names) {
     test.ifError(err);
 
     test.ok(names.length > 0);
