@@ -14,6 +14,9 @@ var util = require('util');
 // stock took 15.847 seconds to run 10000 queries -- 631.0342651605982 queries / second
 // native-dns took 16.688 seconds to run 10000 queries -- 599.2329817833174 queries / second
 
+var COUNT = 1000;
+var CON = 10;
+
 var names = [
   'www.google.com',
   'www.facebook.com',
@@ -87,9 +90,6 @@ Bench.prototype.end = function() {
 
   this.emit('end');
 };
-
-var COUNT = 10000;
-var CON = 10;
 
 var a = new Bench('stock', theirs, COUNT, CON);
 var b = new Bench('native-dns', mine, COUNT, CON);
