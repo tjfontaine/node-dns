@@ -183,12 +183,16 @@ exports.resolveNs = function (test) {
   var req = dns.resolveNs('google.com', function(err, names) {
     test.ifError(err);
 
-    test.ok(names.length > 0);
+    if (names) {
+      test.ok(names.length > 0);
 
-    for (var i = 0; i < names.length; i++) {
-      var name = names[i];
-      test.ok(name);
-      test.ok(typeof name === 'string');
+      for (var i = 0; i < names.length; i++) {
+        var name = names[i];
+        test.ok(name);
+        test.ok(typeof name === 'string');
+      }
+    } else {
+      test.ok(names);
     }
 
     test.done();
