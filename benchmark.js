@@ -3,19 +3,71 @@ var theirs = require('dns');
 var EventEmitter = require('events').EventEmitter;
 var util = require('util');
 
-//XXX XXX XXX I guess if you want to make it fair disable caching
-// mine.platform.cache = false;
-//
-// results with caching
-// stock took 15.838 seconds to run 10000 queries -- 631.3928526329082 queries / second
-// native-dns took 0.653 seconds to run 10000 queries -- 15313.935681470137 queries / second
-//
-// results without caching
-// stock took 15.847 seconds to run 10000 queries -- 631.0342651605982 queries / second
-// native-dns took 16.688 seconds to run 10000 queries -- 599.2329817833174 queries / second
+mine.platform.cache = false;
+/* XXX XXX XXX I guess if you want to make it fair disable caching
+
+Does ramping up "concurrency" test our ability to keep track of
+multiple queries in flight, or does it just benchmark process.nextTick?
+
+output format: <library> <oncurrency> <time> <completed queries / time>
+
+results with caching
+====================
+
+stock 1 0.304 3289.4736842105262
+stock 2 0.139 7194.244604316546
+stock 4 0.067 14925.373134328358
+stock 8 0.037 27027.027027027027
+stock 16 0.037 27027.027027027027
+stock 32 0.031 32258.064516129034
+stock 64 0.033 30303.0303030303
+stock 128 0.032 31250
+stock 256 0.031 32258.064516129034
+stock 512 0.03 33333.333333333336
+stock 1024 5.08 196.8503937007874
+
+native-dns 1 0.18 5555.555555555556
+native-dns 2 0.113 8849.557522123894
+native-dns 4 0.083 12048.192771084337
+native-dns 8 0.08 12500
+native-dns 16 0.079 12658.227848101265
+native-dns 32 0.076 13157.894736842105
+native-dns 64 0.085 11764.70588235294
+native-dns 128 0.067 14925.373134328358
+native-dns 256 0.068 14705.882352941175
+native-dns 512 0.096 10416.666666666666
+native-dns 1024 0.129 7751.937984496124
+
+results without caching
+=======================
+
+stock 1 0.543 1841.6206261510129
+stock 2 0.143 6993.006993006994
+stock 4 0.068 14705.882352941175
+stock 8 0.036 27777.77777777778
+stock 16 0.032 31250
+stock 32 0.034 29411.76470588235
+stock 64 0.037 27027.027027027027
+stock 128 0.032 31250
+stock 256 0.037 27027.027027027027
+stock 512 5.117 195.42700801250732
+stock 1024 6.011 166.36167027116952
+
+native-dns 1 0.517 1934.2359767891683
+native-dns 2 0.309 3236.2459546925566
+native-dns 4 0.236 4237.28813559322
+native-dns 8 0.216 4629.62962962963
+native-dns 16 0.164 6097.560975609756
+native-dns 32 0.157 6369.426751592357
+native-dns 64 0.15 6666.666666666667
+native-dns 128 0.18 5555.555555555556
+native-dns 256 0.176 5681.818181818182
+native-dns 512 0.173 5780.346820809249
+native-dns 1024 0.164 6097.560975609756
+*/
 
 var COUNT = 1000;
-var CON = 10;
+var CON = [ 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1]
 
 var names = [
   'www.google.com',
@@ -32,6 +84,10 @@ var names = [
   'www.ebay.com',
   'www.ask.com',
   'www.aol.com',
+  'www.reddit.com',
+  'www.wikipedia.org',
+  'www.wordpress.com',
+  'www.linkedin.com',
 ];
 
 var Bench = function(name, library, count, concurrency) {
@@ -39,6 +95,7 @@ var Bench = function(name, library, count, concurrency) {
   this.library = library;
   this.count = count;
   this.completed = 0;
+  this.dispatched = 0;
   this.concurrency = concurrency;
   this.ended = false;
 };
@@ -59,10 +116,9 @@ Bench.prototype.start = function() {
 Bench.prototype.query = function() {
   var self = this;
 
-  if (this.count <= 0) {
-    this.end();
-  } else {
-    this.library.resolve(names[this.count % names.length], 'A', function (err, res) {
+  if (this.dispatched < this.count) {
+    this.dispatched += 1;
+    this.library.resolve(names[this.dispatched % names.length], 'A', function (err, res) {
       self.done = Date.now();
       if (err) {
         self.count = 0;
@@ -71,12 +127,15 @@ Bench.prototype.query = function() {
         self.end();
       } else {
         self.completed += 1;
-        self.count -=1 ;
         self.query();
       }
     });
+  } else if(this.completed === this.count) {
+    this.end();
   }
 };
+
+var results = {};
 
 Bench.prototype.end = function() {
   if (this.ended) return;
@@ -84,27 +143,57 @@ Bench.prototype.end = function() {
   this.ended = true;
 
   var total_seconds = (this.done - this.start) / 1000;
-  console.log(this.name, "took", total_seconds, "seconds to run",
-    this.completed, "queries --", this.completed/total_seconds,
-    "queries / second");
+
+  if (!results[this.name]) {
+    results[this.name] = {};
+  }
+
+  results[this.name][this.concurrency] = {
+    time: total_seconds,
+    completed: this.completed,
+    qps: this.completed/total_seconds,
+  };
 
   this.emit('end');
 };
 
-var a = new Bench('stock', theirs, COUNT, CON);
-var b = new Bench('native-dns', mine, COUNT, CON);
+var con = CON.pop();
 
-a.on('end', function() {
-  var check = function() {
-    if (!mine.platform.ready) {
-      process.nextTick(function() {
-        check();
-      });
-    } else {
-      b.start();
-    }
+var nextIter = function() {
+  if (!con) {
+    end();
+    return;
   }
-  check();
-});
 
-a.start();
+  var a = new Bench('stock', theirs, COUNT, con);
+  var b = new Bench('native-dns', mine, COUNT, con);
+
+  a.on('end', function() {
+    var check = function() {
+      if (!mine.platform.ready) {
+        process.nextTick(function() {
+          check();
+        });
+      } else {
+        con = CON.pop();
+        b.on('end', nextIter);
+        b.start();
+      }
+    }
+    check();
+  });
+
+  a.start();
+};
+
+nextIter();
+
+var end = function() {
+  Object.keys(results).forEach(function(library) {
+    var l = results[library];
+    Object.keys(results[library]).forEach(function(concurrency) {
+      var r = l[concurrency];
+      console.log(library, concurrency, r.time, r.qps);
+    });
+  });
+};
