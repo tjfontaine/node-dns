@@ -31,6 +31,8 @@ var dns = require('../dns'),
 
 var platform = require('../lib/platform');
 
+platform.cache = false;
+
 function checkWrap(test, req) {
   test.ok(typeof req === 'object');
 }
