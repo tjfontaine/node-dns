@@ -101,13 +101,16 @@ var Bench = function(name, library, count, concurrency) {
 };
 util.inherits(Bench, EventEmitter);
 
+var nextTick = process.nextTick;
+//var nextTick = global.setImmediate || process.nextTick;
+
 Bench.prototype.start = function() {
   var i, self = this;
 
   this.start = Date.now();
 
   for (i = 0; i < this.concurrency; i++) {
-    process.nextTick(function() {
+    nextTick(function() {
       self.query();
     });
   }
@@ -171,7 +174,7 @@ var nextIter = function() {
   a.on('end', function() {
     var check = function() {
       if (!mine.platform.ready) {
-        process.nextTick(function() {
+        nextTick(function() {
           check();
         });
       } else {
