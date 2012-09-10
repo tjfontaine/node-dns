@@ -229,6 +229,7 @@ exports.resolveSrv = function (test) {
 };
 
 
+/*
 exports.resolveCname = function (test) {
   var req = dns.resolveCname('www.google.com', function(err, names) {
     test.ifError(err);
@@ -246,7 +247,7 @@ exports.resolveCname = function (test) {
 
   checkWrap(test, req);
 };
-
+*/
 
 exports.resolveTxt = function (test) {
   var req = dns.resolveTxt('google.com', function(err, records) {
