@@ -1,3 +1,19 @@
+2012-09-17  Timothy J Fontaine  <tjfontaine@gmail.com>
+  * Bump to v0.3.0
+  * Add more tests and benchmark
+  * More compatible with c-ares
+  * Add rudimentary in-memory cache
+  * Add NAPTR record type
+  * On > 0.8 make sockets be unref for faster destructing
+
+2012-07-22  Timothy J Fontaine  <tjfontaine@gmail.com>
+  * Bump to v0.2.0
+  * Rewrite outbound queue to be simpler
+
+2012-07-08  Timothy J Fontaine  <tjfontaine@gmail.com>
+  * Bump to v0.1.0
+  * State machine to encode and decode packets
+
 2012-03-20  Timothy J Fontaine  <tjfontaine@gmail.com>
   * Bump to v0.0.7
   * Ignore requests/responses less than the minimal size of a query [server, client]
