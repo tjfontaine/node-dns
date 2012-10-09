@@ -1,11 +1,10 @@
-var mine = require('./dns');
-var theirs = require('dns');
+'use strict';
+
+var assert = require('assert');
 var EventEmitter = require('events').EventEmitter;
 var util = require('util');
 
-mine.platform.cache = false;
-/* XXX XXX XXX I guess if you want to make it fair disable caching
-
+/*
 Does ramping up "concurrency" test our ability to keep track of
 multiple queries in flight, or does it just benchmark process.nextTick?
 
@@ -66,9 +65,6 @@ native-dns 512 0.173 5780.346820809249
 native-dns 1024 0.164 6097.560975609756
 */
 
-var COUNT = 1000;
-var CON = [ 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1]
-
 var names = [
   'www.google.com',
   'www.facebook.com',
@@ -102,7 +98,7 @@ var Bench = function(name, library, count, concurrency) {
 util.inherits(Bench, EventEmitter);
 
 var nextTick = process.nextTick;
-//var nextTick = global.setImmediate || process.nextTick;
+var nextTick = global.setImmediate || process.nextTick;
 
 Bench.prototype.start = function() {
   var i, self = this;
@@ -160,38 +156,50 @@ Bench.prototype.end = function() {
   this.emit('end');
 };
 
-var con = CON.pop();
+var opt = require('optimist').usage('Usage: $0 <library> <concurrency> <queries>');
+var argv = opt.argv._;
 
-var nextIter = function() {
-  if (!con) {
-    end();
-    return;
-  }
+if (argv.length != 3) {
+  opt.showHelp()
+  process.exit(1)
+}
 
-  var a = new Bench('stock', theirs, COUNT, con);
-  var b = new Bench('native-dns', mine, COUNT, con);
+var library_name = argv[0].toLowerCase();
+var concurrent = parseInt(argv[1]);
+var queries = parseInt(argv[2]);
 
-  a.on('end', function() {
-    var check = function() {
-      if (!mine.platform.ready) {
-        nextTick(function() {
-          check();
-        });
-      } else {
-        con = CON.pop();
-        b.on('end', nextIter);
-        b.start();
-      }
-    }
-    check();
-  });
+if (['stock', 'native-dns'].indexOf(library_name) === -1) {
+  opt.showHelp();
+  console.error('library should be one of: stock, native-dns\r\n');
+  process.exit(1);
+}
 
-  a.start();
-};
+if (isNaN(concurrent) || isNaN(queries)) {
+  opt.showHelp();
+  console.error('concurrency and queries should be integers');
+  process.exit(1);
+}
 
-nextIter();
+var library;
 
-var end = function() {
+if (library_name === 'stock') {
+  library = require('dns');
+} else {
+  library = require('./dns');
+  // to be fair don't cache
+  library.platform.cache = false;
+}
+
+var bench = new Bench(library_name, library, queries, concurrent);
+
+function check() {
+  if (library.platform && !library.platform.ready)
+    nextTick(check)
+  else
+    bench.start()
+}
+
+bench.on('end', function () {
   Object.keys(results).forEach(function(library) {
     var l = results[library];
     Object.keys(results[library]).forEach(function(concurrency) {
@@ -199,4 +207,6 @@ var end = function() {
       console.log(library, concurrency, r.time, r.qps);
     });
   });
-};
+});
+
+check();
