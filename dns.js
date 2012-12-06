@@ -70,7 +70,7 @@ var definedTypes = [
     obj.type = consts.nameToQtype(type);
     obj.class = consts.NAME_TO_QCLASS.IN;
     Object.keys(opts).forEach(function (k) {
-      if (opts.hasOwnProperty(k)) {
+      if (opts.hasOwnProperty(k) && ['type', 'class'].indexOf(k) == -1) {
         obj[k] = opts[k];
       }
     });
