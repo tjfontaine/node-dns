@@ -59,6 +59,7 @@ var definedTypes = [
   'NS',
   'CNAME',
   'PTR',
+  'NAPTR',
   'TXT',
   'MX',
   'SRV',
