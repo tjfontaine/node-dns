@@ -1,3 +1,22 @@
+2012-12-23  Timothy J Fontaine  <tjfontaine@gmail.com>
+  * Bump to v0.3.4
+  * Update buffercursor to 0.0.5
+  * Allow creation of NAPTR records
+
+2012-12-07  Timothy J Fontaine  <tjfontaine@gmail.com>
+  * Bump to v0.3.3
+  * Make cache layer more generic
+
+2012-12-06  Timothy J Fontaine  <tjfontaine@gmail.com>
+  * Bump to v0.3.2
+  * Revamp benchmark script
+  * Properly set EDNS0 options
+  * Don't overrite `type` and `class` fields of a record
+
+2012-09-25  Timothy J Fontaine  <tjfontaine@gmail.com>
+  * Bump to v0.3.1
+  * Fix win32 to set the actual hostsfiel
+
 2012-09-17  Timothy J Fontaine  <tjfontaine@gmail.com>
   * Bump to v0.3.0
   * Add more tests and benchmark
