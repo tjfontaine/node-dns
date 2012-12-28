@@ -40,8 +40,6 @@ function checkWrap(test, req) {
 var fixed = false;
 
 var fixupDns = function () {
-  console.log(platform.name_servers);
-
   platform.name_servers = [{
     address: '8.8.8.8',
     port: 53,

@@ -101,7 +101,11 @@ exports.Question = function (opts) {
 };
 exports.Request = client.Request;
 
-var cache = require('./lib/cache');
+exports.Cache = require('./lib/cache');
+exports.MemoryStore = require('./lib/memory').MemoryStore;
 
-exports.Cache = cache.Cache;
-exports.MemoryStore = cache.MemoryStore;
+var utils = require('./lib/utils');
+
+exports.Lookup = utils.Lookup
+exports.is_absolute = utils.is_absolute;
+exports.ensure_absolute = utils.ensure_absolute;
