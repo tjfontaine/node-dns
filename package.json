@@ -23,6 +23,11 @@
   "scripts": {
     "test": "nodeunit test"
   },
+  "dependencies": {
+    "buffercursor": ">= 0.0.5",
+    "binaryheap": ">= 0.0.2",
+    "ipaddr.js": ">= 0.1.1"
+  },
   "devDependencies": {
     "optimist": "",
     "nodeunit": ">= 0.7.4"
