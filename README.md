@@ -284,15 +284,39 @@ them to the cache store
 MemoryStore / Cache store model
 -------------------------------
 
-`MemoryStore(max, range)` -- Both max and range are optional, by default it
-will only store 10k keys, and upon reaching that delete `range` items from the
-store (default 50).
+`MemoryStore(opts)` -- An in memory store based on a js object
 
 Methods:
 
- * `get(name, type, cb)` -- check for values of the specified type
-  - if this would return an expired record it removes it
-  - `cb(results)` -- results should be an array of resource records, or falsey
-if not found in cache
- * `set(rr)` -- store the resource record, MemoryStore stores by `name` and
-`type` with an expiration on `ttl`
+ * `get(domain, key, cb)`
+  - `domain` is the holder under which keys will be applied,
+`key` is the subdomain that is being queried for.
+If you `get('example.com', 'www', cb)` you are really asking for `www.example.com`.
+  - `cb(err, results)` -- results is an object of types and array of answers
+   * `{ 1: [{address: '127.0.0.1', ttl: 300, type: 1, class: 1}] }`
+ * `set(domain, key, data, cb)`
+  - `domain` is the parent under which this key is stored.
+`key` is the subdomain we are storing, `data` is an object of types with an array of answers.
+   * `set('example.com', 'www', {1: [{class:1, type:1, ttl:300, address:'127.0.0.1'}]}, cb)`
+  - `cb(err, data)` -- cb merely returns the data that was passed.
+ * `delete(domain[, key[, type]], cb)` -- delete all from a domain, a domain and key,
+or a domain a key and a type.
+
+Lookup
+------
+
+Is a mechanism that given a store performs the common resolution pattern.
+
+Given `example.com` previous added to a store:
+
+  * `www.example.com CNAME foo.bar.example.com.`
+  * `*.example.com A 127.0.0.1`
+
+A `Lookup(store, 'example.com', {name:'www.example.com', type:1}, cb)`
+will resolve `www` to the CNAME and then search for `foo.bar.example.com` which
+will return no results, and then search for `*.bar.example.com` which will also
+return no results, and ultimately searches for `*.example.com` which will return
+the desired record.
+
+Callback will be called with `(err, results)` where results is an array suitable
+for use in `Packet.answer`
