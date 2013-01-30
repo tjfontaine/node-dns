@@ -262,6 +262,13 @@ Available Types:
   - `data` -- string
  * `PTR`
   - `data` -- string
+ * `NAPTR`
+  - `order` -- number
+  - `preference` -- number
+  - `flags` -- string
+  - `service` -- string
+  - `regexp` -- string
+  - `replacement` -- string
 
 Cache
 -----
