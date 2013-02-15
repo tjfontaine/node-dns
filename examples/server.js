@@ -5,6 +5,7 @@ var dns = require('../dns'),
   server = dns.createServer();
 
 var onMessage = function (request, response) {
+  console.log('request from:', request.address);
   var i;
   //console.log(request)
   response.answer.push(dns.A({
@@ -17,9 +18,9 @@ var onMessage = function (request, response) {
     address: '127.0.0.2',
     ttl: 600,
   }));
-  response.additional.push(dns.A({
+  response.additional.push(dns.AAAA({
     name: 'hostA.example.org',
-    address: '127.0.0.3',
+    address: '::1',
     ttl: 600,
   }));
 
