@@ -1,3 +1,7 @@
+2013-03-03  Timothy J Fontaine  <tjfontaine@gmail.com>
+  * Assert missing fields
+  * Truncate integer fields
+
 2013-02-14  Timothy J Fontaine  <tjfontaine@gmail.com>
   * Bump to v0.4.1
   * Disable caching for now
