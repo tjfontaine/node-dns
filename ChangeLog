@@ -1,3 +1,6 @@
+2013-03-23  Timothy J Fontaine  <tjfontaine@gmail.com>
+  * Add SPF record type, same as TXT
+
 2013-03-03  Timothy J Fontaine  <tjfontaine@gmail.com>
   * Assert missing fields
   * Truncate integer fields
