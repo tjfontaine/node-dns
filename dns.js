@@ -100,12 +100,3 @@ exports.Question = function (opts) {
   return q;
 };
 exports.Request = client.Request;
-
-exports.Cache = require('./lib/cache');
-exports.MemoryStore = require('./lib/memory').MemoryStore;
-
-var utils = require('./lib/utils');
-
-exports.Lookup = utils.Lookup
-exports.is_absolute = utils.is_absolute;
-exports.ensure_absolute = utils.ensure_absolute;

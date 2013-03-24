@@ -2,6 +2,7 @@
   * Add SPF record type, same as TXT
   * Emit platform ready on windows (Oleg Elifantiev)
   * Split packet parsing into its own library
+  * Split caching into its own library
 
 2013-03-03  Timothy J Fontaine  <tjfontaine@gmail.com>
   * Assert missing fields

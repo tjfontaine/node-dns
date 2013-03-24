@@ -24,8 +24,8 @@
     "test": "nodeunit test"
   },
   "dependencies": {
-    "binaryheap": ">= 0.0.2",
     "ipaddr.js": ">= 0.1.1",
+    "native-dns-cache": ">= 0.0.1",
     "native-dns-packet": ">= 0.0.1"
   },
   "devDependencies": {
