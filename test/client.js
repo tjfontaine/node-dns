@@ -258,6 +258,17 @@ exports.resolveTxt = function (test) {
   checkWrap(test, req);
 };
 
+exports.resolveSpf = function (test) {
+  var req = dns.resolveSpf('google.com', function(err, records) {
+    test.ifError(err);
+    test.equal(records.length, 1);
+    test.equal(records[0].indexOf('v=spf1'), 0);
+    test.done();
+  });
+
+  checkWrap(test, req);
+};
+
 
 exports.lookup_ipv4_explicit = function (test) {
   var req = dns.lookup('www.google.com', 4, function(err, ip, family) {

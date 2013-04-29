@@ -33,6 +33,7 @@ exports.resolve4 = client.resolve4;
 exports.resolve6 = client.resolve6;
 exports.resolveMx = client.resolveMx;
 exports.resolveTxt = client.resolveTxt;
+exports.resolveSpf = client.resolveSpf;
 exports.resolveSrv = client.resolveSrv;
 exports.resolveNs = client.resolveNs;
 exports.resolveCname = client.resolveCname;
@@ -61,6 +62,7 @@ var definedTypes = [
   'PTR',
   'NAPTR',
   'TXT',
+  'SPF',
   'MX',
   'SRV',
   'SOA',
