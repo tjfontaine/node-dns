@@ -251,6 +251,8 @@ Available Types:
   - `exchange` -- string
  * `TXT`
   - `data` -- string
+ * `SPF`
+  - `data` -- string
  * `SRV`
   - `priority` -- number
   - `weight` -- number
