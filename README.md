@@ -72,6 +72,7 @@ request to finish. (optional, default 4000)
  * `cache` -- can be false to disable caching, or implement the cache model, or
 an instance of Cache but with a different store (optional, default
 platform.cache)
+ * `header` -- an object containing header flags (optional)
 
 There are only two methods
 
