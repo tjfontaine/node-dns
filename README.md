@@ -66,6 +66,7 @@ Request creation takes an object with the following fields
     * `type` -- a string indicating `udp` or `tcp` (optional, default `udp`)
 You do not need to indicate ipv4 or ipv6, the backend will handle that
   - a string ip address
+ * `additional` -- an array of Additional Resource Records (optional)
  * `timeout` -- a number in milliseconds indicating how long to wait for the
 request to finish. (optional, default 4000)
  * `try_edns` -- a boolean indicating whether to use an `EDNSPacket` (optional)
