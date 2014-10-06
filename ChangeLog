@@ -1,3 +1,14 @@
+0.7.0: 2014-08-05 Greg Slepak <contact@taoeffect.com>
+  * `native-dns-packet` 0.0.4 -> 0.1.1
+  * `native-dns-cache`  0.0.1 -> 0.0.2
+  * `ipaddr.js`         0.1.1 -> 0.1.3
+  * Updated authors in `package.json`
+  * Fixed specification of dependency versions in `package.json`
+  * See changes from `native-dns-packet` for what's new
+     + TLDR: many bug fixes, performance improvements.
+             better EDNS support, TLSA support, fixed TXT.
+  * Merged `tjfontaine/master` (adds LICENSE file)
+
 2013-03-23  Timothy J Fontaine  <tjfontaine@gmail.com>
   * Add SPF record type, same as TXT
   * Emit platform ready on windows (Oleg Elifantiev)
