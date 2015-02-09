@@ -250,7 +250,7 @@ Available Types:
   - `priority` -- number
   - `exchange` -- string
  * `TXT`
-  - `data` -- string
+  - `data` -- array of strings
  * `SRV`
   - `priority` -- number
   - `weight` -- number
