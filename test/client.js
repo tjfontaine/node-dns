@@ -396,6 +396,15 @@ exports.lookup_longname = function (test) {
   checkWrap(test, request);
 };
 
+exports.lookup_without_nameservers = function(test) {
+  platform.name_servers = [];
+  dns.lookup('www.google.com', function(err) {
+    test.ok(err, 'we should fail');
+    test.strictEqual(err.errno, dns.TIMEOUT);
+    test.done();
+    fixupDns();
+  });
+};
 
 /* Disabled because it appears to be not working on linux. */
 /*
