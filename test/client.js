@@ -60,7 +60,7 @@ exports.setUp = function (cb) {
     if (fixed) {
       cb();
     } else {
-      process.nextTick(checkReady);
+      setImmediate(checkReady);
     }
   }
   checkReady();
