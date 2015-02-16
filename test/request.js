@@ -223,7 +223,53 @@ exports.longNameLabelOver63 = function (test) {
   r.send();
 };
 
+exports.udpRequestLocalhost = function (test) {
+  var r = Request({
+    question: q,
+    server: '127.0.0.1',
+    timeout: 500,
+  });
 
+  r.on('message', function (err, answer) {
+    test.ok(false, 'UDP Request should have timed-out');
+  });
+
+  r.on('timeout', function () {
+    test.ok(true, 'UDP Requests should timeout');
+  });
+
+  r.on('end', function () {
+    test.done();
+  });
+
+  r.send();
+};
+
+exports.tcpRequestLocalhost = function (test) {
+  var r = Request({
+    question: q,
+    server: {address: '127.0.0.2', type: 'tcp'},
+    timeout: 500,
+  });
+
+  r.on('message', function (err, answer) {
+    test.ok(false, 'UDP Request should have timed-out');
+  });
+
+  r.on('error', function (err) {
+    test.ok(err.code == 'ECONNREFUSED', 'TCP Requests should error with ECONNREFUSED');
+  });
+
+  r.on('timeout', function () {
+    test.ok(false, 'TCP Requests should not timeout');
+  });
+
+  r.on('end', function () {
+    test.done();
+  });
+
+  r.send();
+};
 
 exports.tearDown = function (cb) {
   cb();
