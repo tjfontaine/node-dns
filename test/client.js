@@ -251,7 +251,7 @@ exports.resolveTxt = function (test) {
   var req = dns.resolveTxt('google.com', function(err, records) {
     test.ifError(err);
     test.equal(records.length, 1);
-    test.equal(records[0].indexOf('v=spf1'), 0);
+    test.equal(records[0][0].indexOf('v=spf1'), 0);
     test.done();
   });
 
