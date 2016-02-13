@@ -175,30 +175,14 @@ exports.emptyUdp = function (test) {
   socket.bind();
 };
 
-exports.longName = function (test) {
+exports.longNameOver253 = function (test) {
   var didErr = false;
   var r = Request({
     question: Question({
-      name: '*************'
-        + '***************'
-        + '***************'
-        + '***************'
-        + '***************'
-        + '***************'
-        + '***************'
-        + '***************'
-        + '***************'
-        + '***************'
-        + '***************'
-        + '***************'
-        + '***************'
-        + '***************'
-        + '***************'
-        + '***************'
-        + '***************'
-        + '***************'
-        + '***************'
-        + '***************',
+      name: '123456789012345678901234567890123456789012345678901234567890123.' +
+      '123456789012345678901234567890123456789012345678901234567890123.' +
+      '123456789012345678901234567890123456789012345678901234567890123.' +
+      '1234567890123456789012345678901234567890123456789012345678.com',
     }),
     server: '8.8.8.8',
     timeout: 1000,
@@ -206,11 +190,84 @@ exports.longName = function (test) {
   r.on('error', function (err) {
     test.ok(err, 'We should error because the packet failed to pack');
     didErr = true;
+    test.done();
   });
   r.on('end', function () {
     test.ok(didErr, 'We did not err');
     test.done();
   });
+  r.send();
+};
+
+exports.longNameLabelOver63 = function (test) {
+  var didErr = false;
+  var r = Request({
+    question: Question({
+      name: '123456789012345678901234567890123456789012345678901234567890123.' +
+      '1234567890123456789012345678901234567890123456789012345678901231.' +
+      '123456789012345678901234567890123456789012345678901234567890123.' +
+      '1234567890123456789012345678901234567890123456789012345678.com',
+    }),
+    server: '8.8.8.8',
+    timeout: 1000,
+  });
+  r.on('error', function (err) {
+    test.ok(err, 'We should error because the packet failed to pack');
+    didErr = true;
+    test.done();
+  });
+  r.on('end', function () {
+    test.ok(didErr, 'We did not err');
+    test.done();
+  });
+  r.send();
+};
+
+exports.udpRequestLocalhost = function (test) {
+  var r = Request({
+    question: q,
+    server: '127.0.0.1',
+    timeout: 500,
+  });
+
+  r.on('message', function (err, answer) {
+    test.ok(false, 'UDP Request should have timed-out');
+  });
+
+  r.on('timeout', function () {
+    test.ok(true, 'UDP Requests should timeout');
+  });
+
+  r.on('end', function () {
+    test.done();
+  });
+
+  r.send();
+};
+
+exports.tcpRequestLocalhost = function (test) {
+  var r = Request({
+    question: q,
+    server: {address: '127.0.0.2', type: 'tcp'},
+    timeout: 500,
+  });
+
+  r.on('message', function (err, answer) {
+    test.ok(false, 'UDP Request should have timed-out');
+  });
+
+  r.on('error', function (err) {
+    test.ok(err.code == 'ECONNREFUSED', 'TCP Requests should error with ECONNREFUSED');
+  });
+
+  r.on('timeout', function () {
+    test.ok(false, 'TCP Requests should not timeout');
+  });
+
+  r.on('end', function () {
+    test.done();
+  });
+
   r.send();
 };
 
