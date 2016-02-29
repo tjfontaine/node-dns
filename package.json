@@ -1,6 +1,6 @@
 {
-  "name": "native-dns",
-  "version": "0.7.0",
+  "name": "node-dns",
+  "version": "0.1.0",
   "authors": [
     "Timothy J Fontaine <tjfontaine@gmail.com> (http://atxconsulting.com)",
     "Greg Slepak <contact@taoeffect.com> (https://twitter.com/taoeffect)",
@@ -12,17 +12,17 @@
     "bind",
     "native"
   ],
-  "homepage": "http://github.com/tjfontaine/node-dns",
+  "homepage": "http://github.com/zhaoxingyun/node-dns",
   "bugs": {
-    "url": "http://github.com/tjfontaine/node-dns/issues"
+    "url": "http://github.com/zhaoxingyun/node-dns/issues"
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/tjfontaine/node-dns.git"
+    "url": "http://github.com/zhaoxingyun/node-dns.git"
   },
   "main": "dns.js",
   "engines": {
-    "node": ">= 0.5.0"
+    "node": ">= 5.0.0"
   },
   "scripts": {
     "test": "nodeunit test"
