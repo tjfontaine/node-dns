@@ -6,6 +6,13 @@
     "Greg Slepak <contact@taoeffect.com> (https://twitter.com/taoeffect)",
     "Matthieu Rakotojaona"
   ],
+  "maintainer": {
+		"tutosfaciles48": {
+			"mail": "tutosfaciles48@yahoo.com",
+			"website": "http://tutosfaciles48.f-h.me/",
+			"location": "France"
+		}
+	},
   "description": "Replacement for the core DNS module, includes server implementation",
   "keywords": [
     "dns",
