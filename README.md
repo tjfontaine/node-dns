@@ -3,7 +3,7 @@
 native-dns -- A replacement DNS stack for node.js
 =================================================
 
-# PROJECT NO LONGER MAINTAINED. [MAY THE BEST FORK WIN!](https://github.com/tjfontaine/node-dns/issues/111)
+# PROJECT LONGER MAINTAINED BY GITHUB COMMUNITY
 
 Visit [this issue](https://github.com/tjfontaine/node-dns/issues/111) to suggest or vote on a fork!
 

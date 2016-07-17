@@ -1,3 +1,6 @@
+/*
+TODO: test with node.js > 5.0
+*/
 {
   "name": "native-dns",
   "version": "0.7.0",
@@ -6,23 +9,30 @@
     "Greg Slepak <contact@taoeffect.com> (https://twitter.com/taoeffect)",
     "Matthieu Rakotojaona"
   ],
+  "maintainer": {
+	"tutosfaciles48": {
+		"mail": "tutosfaciles48@yahoo.com",
+		"website": "https://tutosfaciles48.f-h.me/",
+		"location": "France"
+	}
+  },
   "description": "Replacement for the core DNS module, includes server implementation",
   "keywords": [
     "dns",
     "bind",
     "native"
   ],
-  "homepage": "http://github.com/tjfontaine/node-dns",
+  "homepage": "http://github.com/tutosfaciles48/node-dns",
   "bugs": {
-    "url": "http://github.com/tjfontaine/node-dns/issues"
+    "url": "http://github.com/tutosfaciles48/node-dns/issues"
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/tjfontaine/node-dns.git"
+    "url": "http://github.com/tutosfaciles48/node-dns.git"
   },
   "main": "dns.js",
   "engines": {
-    "node": ">= 0.5.0"
+    "node": ">= 5.0.0"
   },
   "scripts": {
     "test": "nodeunit test"
