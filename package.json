@@ -29,7 +29,7 @@
   },
   "main": "dns.js",
   "engines": {
-  	/*TODO: test with node.js > 5.0*/
+  	//TODO: test with node.js > 5.0
     "node": ">= 5.0.0"
   },
   "scripts": {
