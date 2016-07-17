@@ -1,3 +1,6 @@
+/*
+TODO: test with node.js > 5.0
+*/
 {
   "name": "native-dns",
   "version": "0.7.0",
@@ -29,7 +32,6 @@
   },
   "main": "dns.js",
   "engines": {
-  	//TODO: test with node.js > 5.0
     "node": ">= 5.0.0"
   },
   "scripts": {
