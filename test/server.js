@@ -1,4 +1,7 @@
 var dns = require('../dns');
+
+var nextTick = global.setImmediate || process.nextTick;
+
 //*
 exports.udp4 = function (test) {
   var server = dns.createUDPServer(); 
@@ -16,7 +19,7 @@ exports.udp4 = function (test) {
   server.on('listening', function () {
     test.deepEqual(this.address(), tData, 'Not listening on the same port and address');
     // currently disabled because of https://github.com/joyent/node/issues/2867
-    process.nextTick(function () {
+    nextTick(function () {
       server.close();
     });
     succeed = true;
@@ -54,7 +57,7 @@ exports.udp6 = function (test) {
     test.deepEqual(this.address(), tData, 'Not listening on the same port and address');
 
     // currently disabled because of https://github.com/joyent/node/issues/2867
-    process.nextTick(function () {
+    nextTick(function () {
       server.close();
     });
     succeed = true;
@@ -84,7 +87,7 @@ exports.tcp = function (test) {
   server.on('listening', function () {
     test.equal(this.address().port, tData.port, 'Not listening on the same port and address');
     test.equal(this.address().address, tData.address, 'Not listening on the same port and address');
-    process.nextTick(function () {
+    nextTick(function () {
       server.close();
     });
   });
@@ -148,7 +151,7 @@ exports.udpResponse = function (test) {
       server.close();
     });
 
-    process.nextTick(function () {
+    nextTick(function () {
       r.send();
     });
   });
