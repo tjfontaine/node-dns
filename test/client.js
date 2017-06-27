@@ -70,6 +70,7 @@ exports.resolve4 = function (test) {
   var req = dns.resolve4('www.google.com', function(err, ips) {
     test.ifError(err);
 
+    test.ok(ips);
     test.ok(ips.length > 0);
 
     for (var i = 0; i < ips.length; i++) {
@@ -86,7 +87,7 @@ exports.resolve4 = function (test) {
 exports.resolve6 = function (test) {
   var req = dns.resolve6('ipv6.google.com', function(err, ips) {
     test.ifError(err);
-
+    test.ok(ips);
     test.ok(ips.length > 0);
 
     for (var i = 0; i < ips.length; i++) {
@@ -103,7 +104,8 @@ exports.resolve6 = function (test) {
 exports.reverse_ipv4 = function (test) {
   var req = dns.reverse('8.8.8.8', function(err, domains) {
     test.ifError(err);
-
+    
+    test.ok(domains);
     test.ok(domains.length > 0);
 
     for (var i = 0; i < domains.length; i++) {
@@ -122,6 +124,7 @@ exports.reverse_ipv6 = function (test) {
   var req = dns.reverse('2001:4860:4860::8888', function(err, domains) {
     test.ifError(err);
 
+    test.ok(domains);
     test.ok(domains.length > 0);
 
     for (var i = 0; i < domains.length; i++) {
@@ -158,6 +161,7 @@ exports.resolveMx = function (test) {
   var req = dns.resolveMx('gmail.com', function(err, result) {
     test.ifError(err);
 
+    test.ok(result)
     test.ok(result.length > 0);
 
     for (var i = 0; i < result.length; i++) {
@@ -205,6 +209,7 @@ exports.resolveSrv = function (test) {
   var req = dns.resolveSrv('_jabber._tcp.google.com', function(err, result) {
     test.ifError(err);
 
+    test.ok(result)
     test.ok(result.length > 0);
 
     for (var i = 0; i < result.length; i++) {
@@ -232,6 +237,7 @@ exports.resolveCname = function (test) {
   var req = dns.resolveCname('www.google.com', function(err, names) {
     test.ifError(err);
 
+    test.ok(names);
     test.ok(names.length > 0);
 
     for (var i = 0; i < names.length; i++) {
@@ -250,6 +256,7 @@ exports.resolveCname = function (test) {
 exports.resolveTxt = function (test) {
   var req = dns.resolveTxt('google.com', function(err, records) {
     test.ifError(err);
+    test.ok(records);
     test.equal(records.length, 1);
     test.equal(records[0][0].indexOf('v=spf1'), 0);
     test.done();

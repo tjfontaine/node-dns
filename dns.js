@@ -19,8 +19,7 @@
 // THE SOFTWARE
 
 "use strict";
-
-exports.platform = require('./lib/platform');
+var platform = require('./lib/platform');
 
 exports.createServer = require('./lib/server').createServer;
 exports.createUDPServer = require('./lib/server').createUDPServer;
