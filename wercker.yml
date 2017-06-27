@@ -3,3 +3,6 @@ build:
   steps:
     - npm-install
     - npm-test
+    - script:
+        data: |
+          npm test
