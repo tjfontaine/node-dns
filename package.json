@@ -4,6 +4,7 @@
   "authors": [
     "Timothy J Fontaine <tjfontaine@gmail.com> (http://atxconsulting.com)",
     "Greg Slepak <contact@taoeffect.com> (https://twitter.com/taoeffect)",
+    "Roger Castells <rc@ataclick.net>",
     "Matthieu Rakotojaona"
   ],
   "description": "Replacement for the core DNS module, includes server implementation",
