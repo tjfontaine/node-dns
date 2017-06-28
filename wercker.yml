@@ -6,3 +6,5 @@ build:
   steps:
     - npm-install
     - npm-test
+    - script:
+      code: env | sort
