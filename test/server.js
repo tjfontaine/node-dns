@@ -36,6 +36,24 @@ exports.udp4 = function (test) {
 //*/
 //*
 exports.udp6 = function (test) {
+  var intfs = require('os').networkInterfaces();
+  var keys = Object.keys(intfs);
+  var foundV6 = false;
+
+  keys.forEach(function(k) {
+    if (foundV6)
+      return;
+
+    var intf = intfs[k];
+
+    foundV6 = intf.reduce(function (i) { return i.family === 'IPv6' }).length > 0
+  });
+
+  if (!foundV6) {
+    console.error('no v6 interface found, skipping')
+    return test.done();
+  }
+
   var server = dns.createUDPServer({
     dgram_type: 'udp6',
   }); 

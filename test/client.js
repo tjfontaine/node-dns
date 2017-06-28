@@ -37,12 +37,15 @@ function checkWrap(test, req) {
   test.ok(typeof req === 'object');
 }
 
+var REMOTE_DNS = require('../test_utils').REMOTE_DNS;
+var REMOTE_PORT = require('../test_utils').REMOTE_PORT;
+
 var fixed = false;
 
 var fixupDns = function () {
   platform.name_servers = [{
-    address: '8.8.8.8',
-    port: 53,
+    address: REMOTE_DNS,
+    port: REMOTE_PORT,
   }];
 
   platform.search_path = [];
@@ -158,6 +161,7 @@ exports.resolveMx = function (test) {
   var req = dns.resolveMx('gmail.com', function(err, result) {
     test.ifError(err);
 
+    test.ok(result);
     test.ok(result.length > 0);
 
     for (var i = 0; i < result.length; i++) {

@@ -35,6 +35,6 @@
   },
   "devDependencies": {
     "optimist": "",
-    "nodeunit": ">= 0.7.4"
+    "nodeunit": ">= 0.11.1"
   }
 }
