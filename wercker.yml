@@ -1,8 +1,29 @@
+services:
+  - id: tjfontaine/dnsmasq
+    cmd: dnsmasq -q -d -h -p 15353 -R --synth-domain=google.com,8.8.8.0/24 --synth-domain=google.com,2001:4860:4860::8888/64 --mx-host=gmail.com,mail.google.com,10 --txt-record=google.com,v=spf1 --srv-host=_jabber._tcp.google.com,xmpp-server.l.google.com. --local=/exist/ --auth-server=google.com,eth* --auth-zone=google.com,8.8.8.0/24 --host-record=www.google.com,127.0.0.1 --host-record=www.google.com,::1 --host-record=ipv6.google.com,::1
 build:
-  services:
-    - id: tjfontaine/dnsmasq
-      cmd: dnsmasq -q -d -h -p 15353 -R --synth-domain=google.com,8.8.8.0/24 --synth-domain=google.com,2001:4860:4860::8888/64 --mx-host=gmail.com,mail.google.com,10 --txt-record=google.com,v=spf1 --srv-host=_jabber._tcp.google.com,xmpp-server.l.google.com. --local=/exist/ --auth-server=google.com,eth* --auth-zone=google.com,8.8.8.0/24 --host-record=www.google.com,127.0.0.1 --host-record=www.google.com,::1 --host-record=ipv6.google.com,::1
+  box: node:latest
+  steps:
+    - npm-install
+    - npm-test
+    - script:
+      code: env | sort
+build-node4:
   box: node:4
+  steps:
+    - npm-install
+    - npm-test
+    - script:
+      code: env | sort
+build-node6:
+  box: node:6
+  steps:
+    - npm-install
+    - npm-test
+    - script:
+      code: env | sort
+build-node8:
+  box: node:8
   steps:
     - npm-install
     - npm-test
