@@ -14,7 +14,7 @@ Some forks have been created. Conider for example the links in this comment by @
 
 - https://github.com/tjfontaine/node-dns/issues/111#issuecomment-846349223
 
-*Disclaimer: I, @taoeffect, have no revied the code in this fork, and am not responsible for any issues you may or may not run into. May it be a success!*
+*Disclaimer: I, @taoeffect, have not revied the code in this fork, and am not responsible for any issues you may or may not run into. May it be a success!*
 
 # (Below follows original README)
 
