@@ -4,12 +4,17 @@
 native-dns -- A replacement DNS stack for node.js
 =================================================
 
-# Maintenance
+# DEAD. See forks!
 
-This project is not actively maintained, it's left here for historical reasons,
-and when I (TJ) have time I come back to it.
+This project is dead.
 
-Feel free to fork and name the repo and npm package whatever you will.
+Please see this issue: https://github.com/tjfontaine/node-dns/issues/111
+
+Some forks have been created. Conider for example the links in this comment by @FrancisTurner:
+
+- https://github.com/tjfontaine/node-dns/issues/111#issuecomment-846349223
+
+*Disclaimer: I, @taoeffect, have no revied the code in this fork, and am not responsible for any issues you may or may not run into. May it be a success!*
 
 # (Below follows original README)
 
