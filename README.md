@@ -12,8 +12,9 @@ Please see this issue: https://github.com/tjfontaine/node-dns/issues/111
 
 Some forks have been created:
 
-- Fork by @FrancisTurner: https://github.com/FrancisTurner/native-node-dns (relevant comment & other repos: https://github.com/tjfontaine/node-dns/issues/111#issuecomment-846349223)
-- **Tangerine** by @titanism: https://github.com/forwardemail/tangerine (relevant comment: https://github.com/tjfontaine/node-dns/issues/111#issuecomment-1444460007)
+- Fork by @FrancisTurner: https://github.com/FrancisTurner/native-node-dns ([relevant comment & other repos](https://github.com/tjfontaine/node-dns/issues/111#issuecomment-846349223))
+- Fork by @EduardoRuizM: https://github.com/EduardoRuizM/native-dnssec-dns ([relevant comment](https://github.com/tjfontaine/node-dns/issues/111#issuecomment-1426890990))
+- **Tangerine** by @titanism: https://github.com/forwardemail/tangerine ([relevant comment](https://github.com/tjfontaine/node-dns/issues/111#issuecomment-1444460007))
 
 *Disclaimer: I, @taoeffect, have not revied the code in this fork, and am not responsible for any issues you may or may not run into. May it be a success!*
 
