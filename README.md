@@ -10,10 +10,10 @@ This project is dead.
 
 Please see this issue: https://github.com/tjfontaine/node-dns/issues/111
 
-Some forks have been created. Conider for example these links from @FrancisTurner:
+Some forks have been created:
 
-- Fork Repo: https://github.com/FrancisTurner/native-node-dns
-- Relevant Comment: https://github.com/tjfontaine/node-dns/issues/111#issuecomment-846349223
+- Fork by @FrancisTurner: https://github.com/FrancisTurner/native-node-dns (relevant comment & other repos: https://github.com/tjfontaine/node-dns/issues/111#issuecomment-846349223)
+- **Tangerine** by @titanism: https://github.com/forwardemail/tangerine (relevant comment: https://github.com/tjfontaine/node-dns/issues/111#issuecomment-1444460007)
 
 *Disclaimer: I, @taoeffect, have not revied the code in this fork, and am not responsible for any issues you may or may not run into. May it be a success!*
 
