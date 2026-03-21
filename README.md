@@ -1,24 +1,15 @@
-[![wercker status](https://app.wercker.com/status/ed5cab9035dfb9167714f305340490c2/s/master "wercker status")](https://app.wercker.com/project/byKey/ed5cab9035dfb9167714f305340490c2)
-[![Build Status](https://secure.travis-ci.org/tjfontaine/node-dns.png)](http://travis-ci.org/tjfontaine/node-dns)
+> **⚠️ This project is archived and no longer maintained.**
+>
+> If you're looking for actively maintained alternatives, see below.
 
-native-dns -- A replacement DNS stack for node.js
-=================================================
+## Active Forks
 
-# DEAD. See forks!
+- [@FrancisTurner/native-node-dns](https://github.com/FrancisTurner/native-node-dns) ([discussion](https://github.com/tjfontaine/node-dns/issues/111#issuecomment-846349223))
+- [@EduardoRuizM/native-dnssec-dns](https://github.com/EduardoRuizM/native-dnssec-dns) ([discussion](https://github.com/tjfontaine/node-dns/issues/111#issuecomment-1426890990))
+- [Tangerine by @titanism](https://github.com/forwardemail/tangerine) ([discussion](https://github.com/tjfontaine/node-dns/issues/111#issuecomment-1444460007))
 
-This project is dead.
+---
 
-Please see this issue: https://github.com/tjfontaine/node-dns/issues/111
-
-Some forks have been created:
-
-- Fork by @FrancisTurner: https://github.com/FrancisTurner/native-node-dns ([relevant comment & other repos](https://github.com/tjfontaine/node-dns/issues/111#issuecomment-846349223))
-- Fork by @EduardoRuizM: https://github.com/EduardoRuizM/native-dnssec-dns ([relevant comment](https://github.com/tjfontaine/node-dns/issues/111#issuecomment-1426890990))
-- **Tangerine** by @titanism: https://github.com/forwardemail/tangerine ([relevant comment](https://github.com/tjfontaine/node-dns/issues/111#issuecomment-1444460007))
-
-*Disclaimer: I, @taoeffect, have not revied the code in this fork, and am not responsible for any issues you may or may not run into. May it be a success!*
-
-# (Below follows original README)
 
 Installation
 ------------
